@@ -1,0 +1,29 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity FullAdder_8_Bit is
+    Port ( A, B : in  STD_LOGIC_VECTOR (7 downto 0);
+           S : out  STD_LOGIC_VECTOR (7 downto 0);
+           Cout : out  STD_LOGIC);
+end FullAdder_8_Bit;
+
+architecture Behavioral of FullAdder_8_Bit is
+
+component FullAdder is
+    Port ( A, B, Cin : in  STD_LOGIC;
+           S, Cout : out STD_LOGIC);
+end component;
+
+signal C: STD_LOGIC_VECTOR (8 downto 0);
+
+begin
+
+C(0) <= '0';
+
+gen_address : for i in 0 to 7 generate
+FA_instance : FullAdder port map(A(i), B(i), C(i), S(i), C(i + 1));
+end generate gen_address;
+
+Cout <= C(8);
+
+end Behavioral;
