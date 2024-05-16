@@ -1,0 +1,20 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity FullAdderBehavioral is
+    Port ( X : in  STD_LOGIC_VECTOR (2 downto 0);
+           Y : out  STD_LOGIC_VECTOR (1 downto 0));
+end FullAdderBehavioral;
+
+architecture Behavioral of FullAdderBehavioral is
+
+begin
+
+Y <= "00" when X = "000"
+else "10" when X = "001"
+else "10" when X = "010"
+else "10" when X = "100"
+else "11" when X = "111"
+else "01";
+
+end Behavioral;
