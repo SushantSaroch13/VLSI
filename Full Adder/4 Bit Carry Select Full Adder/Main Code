@@ -1,0 +1,46 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity FullAdder_4_bit_CS is
+    Port ( A, B : in  STD_LOGIC_VECTOR (3 downto 0);
+			  Cin : in STD_LOGIC;
+           S : out  STD_LOGIC_VECTOR (3 downto 0);
+           Cout : out  STD_LOGIC);
+end FullAdder_4_bit_CS;
+
+architecture Behavioral of FullAdder_4_bit_CS is
+
+component FullAdder is
+    Port ( A, B, Cin : in  STD_LOGIC;
+           S, Cout : out  STD_LOGIC);
+end component;
+
+component Mux_2X1 is
+    Port ( A, B, S : in STD_LOGIC;
+           Y : out  STD_LOGIC);
+end component;
+
+Signal C1 : STD_LOGIC_VECTOR (4 downto 0);
+Signal C2 : STD_LOGIC_VECTOR (4 downto 0);
+Signal S1 : STD_LOGIC_VECTOR (3 downto 0);
+Signal S2 : STD_LOGIC_VECTOR (3 downto 0);
+
+begin
+C1(0) <= '0';
+C2(0) <= '1';
+
+gen_address1 : for i in 0 to 3 generate
+FA1_instance : FullAdder port map(A(i), B(i), C1(i), S1(i), C1(i + 1));
+end generate gen_address1;
+
+gen_address2 : for i in 0 to 3 generate
+FA2_instance : FullAdder port map(A(i), B(i), C2(i), S2(i), C2(i + 1));
+end generate gen_address2;
+
+gen_address3 : for i in 0 to 3 generate
+Mux_instance : Mux_2X1 port map(S1(i), S2(i), Cin, S(i));
+end generate gen_address3;
+
+Mux_C_instance : Mux_2X1 port map(C1(4), C2(4), Cin, Cout);
+
+end Behavioral;
