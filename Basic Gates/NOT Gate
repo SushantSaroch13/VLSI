@@ -1,0 +1,15 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity NOT_Gate is
+    Port ( x : in  STD_LOGIC;
+           z : out  STD_LOGIC);
+end NOT_Gate;
+
+architecture Behavioral of NOT_Gate is
+
+begin
+
+z <= not x;
+
+end Behavioral;
