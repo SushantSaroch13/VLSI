@@ -1,0 +1,15 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity NAND_Gate is
+    Port ( x, y : in  STD_LOGIC;
+           z : out  STD_LOGIC);
+end NAND_Gate;
+
+architecture Behavioral of NAND_Gate is
+
+begin
+
+z <= x nand y;
+
+end Behavioral;
