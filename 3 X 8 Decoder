@@ -1,0 +1,52 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity Decoder_3X8 is
+    Port ( A : in  STD_LOGIC_VECTOR (2 downto 0);
+           Y : out  STD_LOGIC_VECTOR (7 downto 0));
+end Decoder_3X8;
+
+architecture Behavioral of Decoder_3X8 is
+
+begin
+
+Y <= "00000001" when A = "000"
+else "00000010" when A = "001"
+else "00000100" when A = "010"
+else "00001000" when A = "011"
+else "00010000" when A = "100"
+else "00100000" when A = "101"
+else "01000000" when A = "110"
+else "10000000";
+
+end Behavioral;
+
+--------------------------------------------OR---------------------------------------------------------
+
+--Using Case Statement
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+entity Decoder_3X8_case is
+    Port ( I : in  STD_LOGIC_VECTOR (2 downto 0);
+           O : out  STD_LOGIC_VECTOR (7 downto 0));
+end Decoder_3X8_case;
+
+architecture Behavioral of Decoder_3X8_case is
+
+begin
+process(I)
+begin
+case(I) is
+when "000" => O <= "00000001";
+when "001" => O <= "00000010";
+when "010" => O <= "00000100";
+when "011" => O <= "00001000";
+when "100" => O <= "00010000";
+when "101" => O <= "00100000";
+when "110" => O <= "01000000";
+when "111" => O <= "10000000";
+when others => null;
+end case;
+end process;
+end Behavioral;
