@@ -1,0 +1,15 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity Mux_2X1 is
+    Port ( A, B, S : in STD_LOGIC;
+           Y : out  STD_LOGIC);
+end Mux_2X1;
+
+architecture Behavioral of Mux_2X1 is
+
+begin
+
+Y <= ((not S) and A) or (S and B);
+
+end Behavioral;
