@@ -1,0 +1,29 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity Comparator is
+    Port ( A, B : in  STD_LOGIC_VECTOR (3 downto 0);
+           E, L, G : out  STD_LOGIC);
+end Comparator;
+
+architecture Behavioral of Comparator is
+
+begin
+process (A, B)
+begin
+if A = B then
+E <= '1';
+L <= '0';
+G <= '0';
+elsif A < B then
+E <= '0';
+L <= '1';
+G <= '0';
+else
+E <= '0';
+L <= '0';
+G <= '1';
+end if;
+end process;
+
+end Behavioral;
