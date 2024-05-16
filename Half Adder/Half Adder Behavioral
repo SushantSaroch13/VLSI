@@ -1,0 +1,19 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+
+entity HalfAdderBehavioral is
+    Port ( X : in  STD_LOGIC_VECTOR (1 downto 0);
+           Y : out  STD_LOGIC_VECTOR (1 downto 0));
+end HalfAdderBehavioral;
+
+architecture Behavioral of HalfAdderBehavioral is
+
+begin
+
+Y <= "00" when X = "00"
+else "10" when X = "01"
+else "10" when X = "10"
+else "01" when X = "11";
+
+end Behavioral;
